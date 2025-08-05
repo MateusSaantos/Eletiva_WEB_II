@@ -1,6 +1,8 @@
 package br.edu.ufop.web.ticket.sales.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,29 @@ public class EventService {
 
         return EventConverter.toEventDTO( eventRepository.save(eventModel) );
 
+    }
+
+    public EventDTO getById(UUID id) {
+        EventModel event = eventRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Evento não encontrado"));
+
+        return EventDTO.fromModel(event); 
+    }
+
+    public EventDTO update(EventDTO dto) {
+        EventModel existing = eventRepository.findById(dto.getId())
+            .orElseThrow(() -> new RuntimeException("Evento não encontrado"));
+
+        existing.setDescription(dto.getDescription());
+        existing.setType(dto.getType());
+        existing.setDate(dto.getDate());
+        existing.setStartSales(dto.getStartSales());
+        existing.setEndSales(dto.getEndSales());
+        existing.setPrice(dto.getPrice());
+        existing.setUpdatedAt(LocalDateTime.now());
+
+        EventModel saved = eventRepository.save(existing);
+        return EventDTO.fromModel(saved);
     }
 
 }

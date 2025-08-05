@@ -30,6 +30,20 @@ public class EventDTO {
     private Float price;
 
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;  
+    private LocalDateTime updatedAt; 
+    
+    public static EventDTO fromModel(br.edu.ufop.web.ticket.sales.model.EventModel model) {
+        return EventDTO.builder()
+            .id(model.getId())
+            .description(model.getDescription())
+            .type(model.getType())
+            .date(model.getDate())
+            .startSales(model.getStartSales())
+            .endSales(model.getEndSales())
+            .price(model.getPrice())
+            .createdAt(model.getCreatedAt())
+            .updatedAt(model.getUpdatedAt())
+            .build();
+    }
     
 }

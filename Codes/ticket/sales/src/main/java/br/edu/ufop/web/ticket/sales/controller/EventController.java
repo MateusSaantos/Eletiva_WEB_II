@@ -9,10 +9,13 @@ import br.edu.ufop.web.ticket.sales.service.EventService;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -32,6 +35,18 @@ public class EventController {
         EventDTO eventDTO = eventService.create(createEventDTO);
         return ResponseEntity.ok(eventDTO);
     }
-    
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EventDTO> getById(@PathVariable UUID id) {
+        EventDTO eventDTO = eventService.getById(id);
+        return ResponseEntity.ok(eventDTO);
+    }
+
+    @PutMapping
+    public ResponseEntity<EventDTO> update(@RequestBody EventDTO eventDTO) {
+        EventDTO updated = eventService.update(eventDTO);
+        return ResponseEntity.ok(updated);
+    }
+
     
 }
