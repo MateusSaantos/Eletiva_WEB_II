@@ -1,1 +1,14 @@
-docker compose -f docker-compose-dev.yaml up
+Rodar docker: docker compose -f docker-compose-dev.yaml up
+
+1 - nameserver
+2 - getway
+3 - user
+4 - sales
+
+
+Rodar frontend:
+npm run dev
+http://localhost:5173/
+
+Eureka:
+http://localhost:8761/

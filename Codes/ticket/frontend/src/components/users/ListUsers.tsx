@@ -3,7 +3,7 @@ import api from "../../services/api"
 
 interface UserInterface {
     id: string,
-    name: string,
+    name: string
     email: string
 }
 
